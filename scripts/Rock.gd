@@ -1,15 +1,15 @@
 extends RigidBody2D
 
-var health = 100
+const HEALTH_MAX = 100
+const HEALTH_HIT = 60
 
-func _physics_process(delta):
-	if health < 0:
-		rock_destroyed()
-		
-func hit():
-	health -= 30
-	
-func rock_destroyed():
-	Global.player.score += 10
-	queue_free()
-	
+var health = HEALTH_MAX
+var symbol = 0
+
+func on_body_entered(body):
+	if body.is_in_group("bullets"):
+		body.queue_free()
+		health -= HEALTH_HIT
+		if health < 0:
+			Global.player.score += 10
+			queue_free()

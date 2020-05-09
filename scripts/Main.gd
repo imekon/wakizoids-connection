@@ -12,6 +12,11 @@ onready var rock4 = preload("res://scenes/Rock4.tscn")
 onready var rock5 = preload("res://scenes/Rock5.tscn")
 onready var rock6 = preload("res://scenes/Rock6.tscn")
 
+onready var symbol1 = preload("res://scenes/Symbol1.tscn")
+onready var symbol2 = preload("res://scenes/Symbol2.tscn")
+onready var symbol3 = preload("res://scenes/Symbol3.tscn")
+onready var symbol4 = preload("res://scenes/Symbol4.tscn")
+
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 const BULLET_REPEAT_TIME = 0.2

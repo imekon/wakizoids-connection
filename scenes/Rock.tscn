@@ -5,8 +5,11 @@
 [node name="Rock" type="RigidBody2D" groups=[
 "rocks",
 ]]
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
