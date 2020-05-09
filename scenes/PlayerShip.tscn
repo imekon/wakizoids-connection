@@ -3,7 +3,9 @@
 [ext_resource path="res://images/ships/greenship.png" type="Texture" id=1]
 [ext_resource path="res://scripts/PlayerShip.gd" type="Script" id=2]
 
-[node name="PlayerShip" type="KinematicBody2D"]
+[node name="PlayerShip" type="KinematicBody2D" groups=[
+"player",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
