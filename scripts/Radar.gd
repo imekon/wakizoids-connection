@@ -19,7 +19,7 @@ func _draw():
 	var py = player.global_position.y
 	
 	var w = rect_size.x
-	var h = rect_size.y
+	var h = rect_size.y - 20
 	
 	var w2 = w / 2 
 	var h2 = h / 2
@@ -34,14 +34,33 @@ func _draw():
 	var rocks = get_tree().get_nodes_in_group("rocks")
 	for rock in rocks:
 		x = (rock.global_position.x - px) / RADAR_SCALING + w2
-		y = (rock.global_position.y - py) / RADAR_SCALING + h2
+		y = (rock.global_position.y - py) / RADAR_SCALING + h2 + 20
 		if x < 0:
 			continue
 			
 		if x > w:
 			continue
 				
-		if y < 0:
+		if y < 20:
+			continue
+			
+		if y > h:
+			continue
+			
+		rect = Rect2(x - 1, y - 1, 3, 3)
+		draw_rect(rect, Color(0, 0.7, 0))
+
+	var aliens = get_tree().get_nodes_in_group("aliens")
+	for alien in aliens:
+		x = (alien.global_position.x - px) / RADAR_SCALING + w2
+		y = (alien.global_position.y - py) / RADAR_SCALING + h2 + 20
+		if x < 0:
+			continue
+			
+		if x > w:
+			continue
+				
+		if y < 20:
 			continue
 			
 		if y > h:
