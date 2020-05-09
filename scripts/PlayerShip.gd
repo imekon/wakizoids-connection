@@ -6,6 +6,7 @@ onready var exhaust_position = $ExhaustPosition
 const ROTATION_SPEED = 1
 const THRUST_SPEED = 10
 const THRUST_DECAY = 3
+const THRUST_BRAKE = 6
 const THRUST_MAX = 700
 
 var angle = 0
@@ -13,11 +14,7 @@ var thrust = 0
 var velocity = Vector2()
 var score = 0
 
-func _ready():
-	pass
-	
 func _physics_process(delta):
-	
 	thrust -= THRUST_DECAY
 	
 	if Input.is_action_pressed("left"):
@@ -28,6 +25,9 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("thrust"):
 		thrust += THRUST_SPEED
+		
+	if Input.is_action_pressed("brake"):
+		thrust -= THRUST_BRAKE
 
 	thrust = clamp(thrust, 0, THRUST_MAX)
 		
