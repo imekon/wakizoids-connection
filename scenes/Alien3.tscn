@@ -5,6 +5,7 @@
 
 [node name="AlienShip" instance=ExtResource( 2 )]
 alien_ship = 3
+health = 200
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

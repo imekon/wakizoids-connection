@@ -2,6 +2,9 @@ extends Node2D
 
 onready var score_label = $PlayerShip/HUD/ScoreLabel
 onready var thrust_label = $PlayerShip/HUD/ThrustLabel
+onready var rock_label = $PlayerShip/HUD/RockLabel
+onready var alien_label = $PlayerShip/HUD/AlienLabel
+onready var symbols_label = $PlayerShip/HUD/SymbolLabel
 
 onready var player = $PlayerShip
 
@@ -49,8 +52,14 @@ func _ready():
 			flag = false
 			
 func _physics_process(delta):
+	var rock_count = get_tree().get_nodes_in_group("rocks").size()
+	var alien_count = get_tree().get_nodes_in_group("aliens").size()
+	
 	score_label.text = "Score: " + str(player.score)
 	thrust_label.text = "Thrust: " + str(player.thrust)
+	rock_label.text = "Rocks: " + str(rock_count)
+	alien_label.text = "Aliens: " + str(alien_count)
+	symbols_label.text = "Symbols: " + str(player.symbols_found) + "/4"
 	
 	bullet_time += delta
 	

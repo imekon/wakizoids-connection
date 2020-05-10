@@ -13,6 +13,7 @@ var angle = 0
 var thrust = 0
 var velocity = Vector2()
 var score = 0
+var symbols_found = 0
 
 func _physics_process(delta):
 	thrust -= THRUST_DECAY

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const BULLET_THRUST = 1000
-const BULLET_TIME_LIMIT = 2
+const BULLET_TIME_LIMIT = 4
 
 var angle = 0
 var velocity = Vector2(0, 0)
@@ -18,4 +18,8 @@ func _physics_process(delta):
 		queue_free()
 		return
 	
-	move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
+	if collision != null:
+		if collision.collider.is_in_group("aliens"):
+			collision.collider.hit()
+			queue_free()
