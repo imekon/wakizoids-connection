@@ -8,16 +8,23 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Targeting",
+"language": "GDScript",
+"path": "res://scripts/Targeting.gd"
+} ]
 _global_script_class_icons={
-
+"Targeting": ""
 }
 
 [application]
 
 config/name="Wakizoids Connection"
 run/main_scene="res://scenes/Welcome.tscn"
+boot_splash/image="res://images/wallpaper.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://wakizoids.ico"
 
 [autoload]
 

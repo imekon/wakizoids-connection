@@ -12,4 +12,6 @@ func on_body_entered(body):
 		health -= HEALTH_HIT
 		if health < 0:
 			Global.player.score += 10
+			if symbol != 0:
+				Global.create_symbol(symbol, global_position)
 			queue_free()

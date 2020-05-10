@@ -20,11 +20,6 @@ onready var alien2 = preload("res://scenes/Alien2.tscn")
 onready var alien3 = preload("res://scenes/Alien3.tscn")
 onready var alien4 = preload("res://scenes/Alien4.tscn")
 
-onready var symbol1 = preload("res://scenes/Symbol1.tscn")
-onready var symbol2 = preload("res://scenes/Symbol2.tscn")
-onready var symbol3 = preload("res://scenes/Symbol3.tscn")
-onready var symbol4 = preload("res://scenes/Symbol4.tscn")
-
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 const BULLET_REPEAT_TIME = 0.2
@@ -35,6 +30,7 @@ func _ready():
 	randomize()
 	
 	Global.player = player
+	Global.main = self
 	
 	var items = []
 	build_rocks(items)
