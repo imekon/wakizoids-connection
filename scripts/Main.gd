@@ -44,7 +44,7 @@ func _ready():
 				continue
 				
 			items[index].symbol = i + 1
-			print("symbol set at " + str(index))
+			Global.symbols.append(items[index])
 			flag = false
 			
 func _physics_process(delta):

@@ -31,6 +31,9 @@ func _draw():
 	var rect = Rect2(x - 2, y - 2, 5, 5)
 	draw_rect(rect, Color.white)
 	
+	# current symbol
+	var current_symbol_item = Global.symbols[Global.current_symbol]
+	
 	# rock positions
 	var rocks = get_tree().get_nodes_in_group("rocks")
 	for rock in rocks:
@@ -49,8 +52,13 @@ func _draw():
 			continue
 			
 		rect = Rect2(x - 1, y - 1, 3, 3)
-		draw_rect(rect, Color(0, 0.7, 0))
+		var colour = Color(0, 0.7, 0)
+		if rock == current_symbol_item:
+			colour = Color.yellow
+			
+		draw_rect(rect, colour)
 
+	# alien positions
 	var aliens = get_tree().get_nodes_in_group("aliens")
 	for alien in aliens:
 		x = (alien.global_position.x - px) / RADAR_SCALING + w2
@@ -68,4 +76,28 @@ func _draw():
 			continue
 			
 		rect = Rect2(x - 1, y - 1, 3, 3)
-		draw_rect(rect, Color(0.7, 0, 0))
+		var colour = Color(0.7, 0, 0)
+		if alien == current_symbol_item:
+			colour = Color.yellow
+			
+		draw_rect(rect, colour)
+
+	# symbols
+	var symbols = get_tree().get_nodes_in_group("symbols")
+	for symbol in symbols:
+		x = (symbol.global_position.x - px) / RADAR_SCALING + w2
+		y = (symbol.global_position.y - py) / RADAR_SCALING + h2 + RADAR_VERT_OFFSET
+		if x < 0:
+			continue
+			
+		if x > w:
+			continue
+				
+		if y < RADAR_VERT_OFFSET:
+			continue
+			
+		if y > h:
+			continue
+			
+		rect = Rect2(x - 1, y - 1, 3, 3)
+		draw_rect(rect, Color.yellow)
