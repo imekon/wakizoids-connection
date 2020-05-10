@@ -2,6 +2,7 @@ extends Panel
 
 const RADAR_SCALING = 100
 const RADAR_TIME = 0.1
+const RADAR_VERT_OFFSET = 20
 
 var time = 0
 
@@ -26,7 +27,7 @@ func _draw():
 	
 	# player position
 	var x = w2
-	var y = h2
+	var y = h2 + RADAR_VERT_OFFSET
 	var rect = Rect2(x - 2, y - 2, 5, 5)
 	draw_rect(rect, Color.white)
 	
@@ -34,14 +35,14 @@ func _draw():
 	var rocks = get_tree().get_nodes_in_group("rocks")
 	for rock in rocks:
 		x = (rock.global_position.x - px) / RADAR_SCALING + w2
-		y = (rock.global_position.y - py) / RADAR_SCALING + h2 + 20
+		y = (rock.global_position.y - py) / RADAR_SCALING + h2 + RADAR_VERT_OFFSET
 		if x < 0:
 			continue
 			
 		if x > w:
 			continue
 				
-		if y < 20:
+		if y < RADAR_VERT_OFFSET:
 			continue
 			
 		if y > h:
@@ -53,14 +54,14 @@ func _draw():
 	var aliens = get_tree().get_nodes_in_group("aliens")
 	for alien in aliens:
 		x = (alien.global_position.x - px) / RADAR_SCALING + w2
-		y = (alien.global_position.y - py) / RADAR_SCALING + h2 + 20
+		y = (alien.global_position.y - py) / RADAR_SCALING + h2 + RADAR_VERT_OFFSET
 		if x < 0:
 			continue
 			
 		if x > w:
 			continue
 				
-		if y < 20:
+		if y < RADAR_VERT_OFFSET:
 			continue
 			
 		if y > h:
