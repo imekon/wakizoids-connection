@@ -38,14 +38,15 @@ script = ExtResource( 4 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 640, 384 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 640, 375 )
+transform = Transform2D( 1, 0, 0, 1, 640, 375 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1280, 1280 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 20480, 20480 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="PlayerShip" parent="." instance=ExtResource( 2 )]
 position = Vector2( 640, 384 )
