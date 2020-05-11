@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export(int) var alien_ship
 export(int) var health = 100
+export(int) var score = 20
 
 onready var proximity_position = $ProximityPosition
 

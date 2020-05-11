@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var firing_position = $FiringPosition
 onready var exhaust_position = $ExhaustPosition
 
-const ROTATION_SPEED = 1
+const ROTATION_SPEED = 2
 const THRUST_SPEED = 10
 const THRUST_DECAY = 3
 const THRUST_BRAKE = 6

@@ -5,6 +5,7 @@ onready var thrust_label = $PlayerShip/HUD/ThrustLabel
 onready var rock_label = $PlayerShip/HUD/RockLabel
 onready var alien_label = $PlayerShip/HUD/AlienLabel
 onready var symbols_label = $PlayerShip/HUD/SymbolLabel
+onready var radar = $PlayerShip/HUD/Radar
 
 onready var player = $PlayerShip
 
@@ -61,6 +62,15 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("fire"):
 		fire_bullet(player.firing_position.global_position, player.angle)
+		
+	if Input.is_action_just_pressed("short_range"):
+		radar.set_range(0)
+		
+	if Input.is_action_just_pressed("medium_range"):
+		radar.set_range(1)
+		
+	if Input.is_action_just_pressed("long_range"):
+		radar.set_range(2)
 
 func build_rocks(items):
 	var rock
