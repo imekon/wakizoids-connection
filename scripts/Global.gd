@@ -1,6 +1,7 @@
 extends Node
 
-const EDGE_UNIVERSE = 10000
+const EDGE_UNIVERSE = 20000
+const EDGE_UNIVERSE2 = 40000
 
 onready var symbol1 = preload("res://scenes/Symbol1.tscn")
 onready var symbol2 = preload("res://scenes/Symbol2.tscn")

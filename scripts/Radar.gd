@@ -25,6 +25,8 @@ func _draw():
 	var w2 = w / 2 
 	var h2 = h / 2
 	
+#	var gray_colour = Color(0.7, 0.7, 0.7)
+	
 	# player position
 	var x = w2
 	var y = h2 + RADAR_VERT_OFFSET

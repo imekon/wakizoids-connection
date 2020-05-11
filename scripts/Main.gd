@@ -79,8 +79,8 @@ func build_rocks(items):
 		items.append(rock)
 		
 func build_rock(rock_scene):
-	var x = randi() % 20000 - 10000
-	var y = randi() % 20000 - 10000
+	var x = randi() % Global.EDGE_UNIVERSE2 - Global.EDGE_UNIVERSE
+	var y = randi() % Global.EDGE_UNIVERSE2 - Global.EDGE_UNIVERSE
 	var rock = rock_scene.instance()
 	rock.position = Vector2(x, y)
 	add_child(rock)
@@ -99,8 +99,8 @@ func build_aliens(items):
 		items.append(alien)
 	
 func build_alien(alien_scene):
-	var x = randi() % 20000 - 10000
-	var y = randi() % 20000 - 10000
+	var x = randi() % Global.EDGE_UNIVERSE2 - Global.EDGE_UNIVERSE
+	var y = randi() % Global.EDGE_UNIVERSE2 - Global.EDGE_UNIVERSE
 	var alien = alien_scene.instance()
 	alien.position = Vector2(x, y)
 	alien.rotation_degrees = randi() % 360
