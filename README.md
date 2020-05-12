@@ -5,6 +5,6 @@
 
 ModeSeven font by acb@dev.null.org
 
-Alien ships by ...
+Ships by By MillionthVector (http://millionthvector.blogspot.de)
 
 <a href="https://www.vecteezy.com/free-vector/alien">Alien Vectors by Vecteezy</a>
