@@ -9,6 +9,7 @@ onready var alien_label = $PlayerShip/HUD/AlienLabel
 onready var symbols_label = $PlayerShip/HUD/SymbolLabel
 onready var radar = $PlayerShip/HUD/Radar
 
+onready var tween = $SoundEffects/Tween
 onready var alarm_sound = $SoundEffects/Alarm
 onready var engine_sound = $SoundEffects/Engine
 onready var explosion_sound = $SoundEffects/Explosion
@@ -36,6 +37,7 @@ const BULLET_REPEAT_TIME = 0.2
 enum SOUNDS { Alarm, EngineSound, Explosion, Fire, Pickup }
 
 var bullet_time = 0
+var tween_stop
 
 func _ready():
 	randomize()
@@ -86,7 +88,7 @@ func _physics_process(delta):
 
 func build_rocks(items):
 	var rock
-	for i in range(0, 20):
+	for _i in range(0, 20):
 		rock = build_rock(rock1)
 		items.append(rock)
 		rock = build_rock(rock2)
@@ -110,7 +112,7 @@ func build_rock(rock_scene):
 	
 func build_aliens(items):
 	var alien
-	for i in range(0, 20):
+	for _i in range(0, 20):
 		alien = build_alien(alien1)
 		items.append(alien)
 		alien = build_alien(alien2)
@@ -133,34 +135,43 @@ func fire_bullet(pos, angle):
 	if bullet_time < BULLET_REPEAT_TIME:
 		return
 		
-	play_sound(SOUNDS.Fire)
+	fire_sound.play()
 	var bullet = bullet_scene.instance()
 	bullet.global_position = pos
 	bullet.angle = angle
 	add_child(bullet)
 	bullet_time = 0
 
-func play_sound(sound):
-	match sound:
-		SOUNDS.Alarm:
-			alarm_sound.play()
-		SOUNDS.EngineSound:
-			engine_sound.play()
-		SOUNDS.Explosion:
-			explosion_sound.play()
-		SOUNDS.Fire:
-			fire_sound.play()
-		SOUNDS.Pickup:
-			pickup_sound.play();
+#func play_sound(sound):
+#	match sound:
+#		SOUNDS.Alarm:
+#			alarm_sound.play()
+#		SOUNDS.EngineSound:
+#			engine_sound.play()
+#		SOUNDS.Explosion:
+#			explosion_sound.play()
+#		SOUNDS.Fire:
+#			fire_sound.play()
+#		SOUNDS.Pickup:
+#			pickup_sound.play();
 
 func play_engine_sound():
+	tween_stop = false
+	tween.interpolate_property(engine_sound, "volume_db", -60, 0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
 	engine_sound.play()
 	
 func stop_engine_sound():
-	engine_sound.stop()
+	tween_stop = true
+	tween.interpolate_property(engine_sound, "volume_db", 0, -60, 0.7, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.start()
 
 func play_explosion_sound():
 	explosion_sound.play()
 
 func play_pickup_sound():
 	pickup_sound.play()
+
+func on_tween_completed(_object, _key):
+	if tween_stop:
+		engine_sound.stop()

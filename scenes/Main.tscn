@@ -154,6 +154,8 @@ margin_bottom = 752.0
 
 [node name="SoundEffects" type="Node2D" parent="."]
 
+[node name="Tween" type="Tween" parent="SoundEffects"]
+
 [node name="Alarm" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource( 9 )
 bus = "SFX"
@@ -173,3 +175,4 @@ bus = "SFX"
 [node name="Pickup" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource( 7 )
 bus = "SFX"
+[connection signal="tween_completed" from="SoundEffects/Tween" to="." method="on_tween_completed"]
