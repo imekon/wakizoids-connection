@@ -13,6 +13,8 @@ var angle = 0
 var thrust = 0
 var velocity = Vector2()
 var score = 0
+var shields = 100
+var health = 100
 var symbols_found = 0
 
 func _physics_process(delta):
@@ -31,9 +33,36 @@ func _physics_process(delta):
 		thrust -= THRUST_BRAKE
 
 	thrust = clamp(thrust, 0, THRUST_MAX)
+	
+	if thrust > 100:
+		Global.play_engine_sound()
+	else:
+		Global.stop_engine_sound()
 		
-	velocity.x = thrust * sin(deg2rad(angle))
-	velocity.y = -thrust * cos(deg2rad(angle))
+	velocity = Vector2(thrust, 0).rotated(deg2rad(angle - 90))
+		
+	# velocity.x = thrust * sin(deg2rad(angle))
+	# velocity.y = -thrust * cos(deg2rad(angle))
 		
 	rotation_degrees = angle
-	velocity = move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
+	if collision != null:
+		scrape(15)
+	
+	if health < 100:
+		health += 0.1
+	else:
+		if shields < 100:
+			shields += 0.1
+			
+	health = clamp(health, 0, 100)
+	shields = clamp(shields, 0, 100)
+
+func scrape(amount):
+	if shields > 1:
+		shields -= amount
+		return
+		
+	if health > 0:
+		health -= amount
+		

@@ -1,10 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://images/starfield.png" type="Texture" id=1]
 [ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/MODES___.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Radar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/pickup.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/fire.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/alarm.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/engine.wav" type="AudioStream" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -32,6 +37,14 @@ font_data = ExtResource( 3 )
 size = 20
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 3 )
+
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -56,12 +69,34 @@ current = true
 
 [node name="HUD" type="CanvasLayer" parent="PlayerShip"]
 
+[node name="HealthLabel" type="Label" parent="PlayerShip/HUD"]
+margin_left = 24.0
+margin_top = 536.0
+margin_right = 132.0
+margin_bottom = 556.0
+custom_fonts/font = SubResource( 2 )
+text = "Health: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShieldsLabel" type="Label" parent="PlayerShip/HUD"]
+margin_left = 24.0
+margin_top = 512.0
+margin_right = 144.0
+margin_bottom = 532.0
+custom_fonts/font = SubResource( 3 )
+text = "Shields: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScoreLabel" type="Label" parent="PlayerShip/HUD"]
 margin_left = 24.0
 margin_top = 632.0
 margin_right = 120.0
 margin_bottom = 652.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Score: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -72,7 +107,7 @@ margin_left = 24.0
 margin_top = 656.0
 margin_right = 132.0
 margin_bottom = 676.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Thrust: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,7 +118,7 @@ margin_left = 24.0
 margin_top = 608.0
 margin_right = 120.0
 margin_bottom = 628.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Rocks: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,7 +129,7 @@ margin_left = 24.0
 margin_top = 582.0
 margin_right = 132.0
 margin_bottom = 602.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Aliens: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,7 +140,7 @@ margin_left = 24.0
 margin_top = 704.0
 margin_right = 168.0
 margin_bottom = 724.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "Symbols: 0/4"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,3 +151,25 @@ margin_left = 512.0
 margin_top = 560.0
 margin_right = 768.0
 margin_bottom = 752.0
+
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Alarm" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="Engine" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 10 )
+bus = "SFX"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="Fire" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="Pickup" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 7 )
+bus = "SFX"

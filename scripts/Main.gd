@@ -1,11 +1,19 @@
 extends Node2D
 
+onready var shields_label = $PlayerShip/HUD/ShieldsLabel
+onready var health_label = $PlayerShip/HUD/HealthLabel
 onready var score_label = $PlayerShip/HUD/ScoreLabel
 onready var thrust_label = $PlayerShip/HUD/ThrustLabel
 onready var rock_label = $PlayerShip/HUD/RockLabel
 onready var alien_label = $PlayerShip/HUD/AlienLabel
 onready var symbols_label = $PlayerShip/HUD/SymbolLabel
 onready var radar = $PlayerShip/HUD/Radar
+
+onready var alarm_sound = $SoundEffects/Alarm
+onready var engine_sound = $SoundEffects/Engine
+onready var explosion_sound = $SoundEffects/Explosion
+onready var fire_sound = $SoundEffects/Fire
+onready var pickup_sound = $SoundEffects/Pickup
 
 onready var player = $PlayerShip
 
@@ -24,6 +32,8 @@ onready var alien4 = preload("res://scenes/Alien4.tscn")
 onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 const BULLET_REPEAT_TIME = 0.2
+
+enum SOUNDS { Alarm, EngineSound, Explosion, Fire, Pickup }
 
 var bullet_time = 0
 
@@ -52,11 +62,13 @@ func _physics_process(delta):
 	var rock_count = get_tree().get_nodes_in_group("rocks").size()
 	var alien_count = get_tree().get_nodes_in_group("aliens").size()
 	
-	score_label.text = "Score: " + str(player.score)
-	thrust_label.text = "Thrust: " + str(player.thrust)
-	rock_label.text = "Rocks: " + str(rock_count)
-	alien_label.text = "Aliens: " + str(alien_count)
-	symbols_label.text = "Symbols: " + str(player.symbols_found) + "/4"
+	shields_label.text = "Shields: %d" % player.shields
+	health_label.text = "Health: %d" % player.health
+	score_label.text = "Score: %d" % player.score
+	thrust_label.text = "Thrust: %d" % player.thrust
+	rock_label.text = "Rocks: %d" % rock_count
+	alien_label.text = "Aliens: %d" % alien_count
+	symbols_label.text = "Symbols: %d/4" % player.symbols_found
 	
 	bullet_time += delta
 	
@@ -121,8 +133,34 @@ func fire_bullet(pos, angle):
 	if bullet_time < BULLET_REPEAT_TIME:
 		return
 		
+	play_sound(SOUNDS.Fire)
 	var bullet = bullet_scene.instance()
 	bullet.global_position = pos
 	bullet.angle = angle
 	add_child(bullet)
 	bullet_time = 0
+
+func play_sound(sound):
+	match sound:
+		SOUNDS.Alarm:
+			alarm_sound.play()
+		SOUNDS.EngineSound:
+			engine_sound.play()
+		SOUNDS.Explosion:
+			explosion_sound.play()
+		SOUNDS.Fire:
+			fire_sound.play()
+		SOUNDS.Pickup:
+			pickup_sound.play();
+
+func play_engine_sound():
+	engine_sound.play()
+	
+func stop_engine_sound():
+	engine_sound.stop()
+
+func play_explosion_sound():
+	explosion_sound.play()
+
+func play_pickup_sound():
+	pickup_sound.play()

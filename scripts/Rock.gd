@@ -23,6 +23,9 @@ func on_body_entered(body):
 		health -= HEALTH_HIT
 		if health < 0:
 			destroyed()
+			
+	if body.is_in_group("player"):
+		body.scrape(20)
 
 func destroyed():
 	Global.player.score += score
