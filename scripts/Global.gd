@@ -8,6 +8,8 @@ onready var symbol2 = preload("res://scenes/Symbol2.tscn")
 onready var symbol3 = preload("res://scenes/Symbol3.tscn")
 onready var symbol4 = preload("res://scenes/Symbol4.tscn")
 
+onready var explosion = preload("res://scenes/Explosion.tscn")
+
 var player
 var main
 
@@ -35,6 +37,12 @@ func collect_symbol(index):
 	current_symbol += 1
 	if current_symbol > 4:
 		game_won()
+		
+func create_explosion(pos):
+	var explode = explosion.instance()
+	explode.position = pos
+	explode.emitting = true
+	main.add_child(explode)
 		
 func game_won():
 	get_tree().change_scene("res://scenes/GameOver.tscn")

@@ -22,7 +22,12 @@ func on_body_entered(body):
 		body.queue_free()
 		health -= HEALTH_HIT
 		if health < 0:
-			Global.player.score += score
-			if symbol != 0:
-				Global.create_symbol(symbol, global_position)
-			queue_free()
+			destroyed()
+
+func destroyed():
+	Global.player.score += score
+	if symbol != 0:
+		Global.create_symbol(symbol, global_position)
+	Global.create_explosion(global_position)
+	queue_free()
+	

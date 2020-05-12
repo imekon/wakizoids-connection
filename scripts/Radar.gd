@@ -2,6 +2,7 @@ extends Panel
 
 const RADAR_TIME = 0.1
 const RADAR_VERT_OFFSET = 20
+const SYMBOL_COLOUR = Color(0, 0, 1)
 
 var time = 0
 var scaling = 100
@@ -50,7 +51,7 @@ func _draw():
 
 #		var colour = Color(0, 0.7, 0)
 		if rock == current_symbol_item:
-			colour = Color.yellow
+			colour = SYMBOL_COLOUR
 			draw_anyway = true
 			
 		if x < 0:
@@ -91,7 +92,7 @@ func _draw():
 
 		colour = Color(0.7, 0, 0)
 		if alien == current_symbol_item:
-			colour = Color.yellow
+			colour = SYMBOL_COLOUR
 			draw_anyway = true
 
 		if x < 0:
@@ -139,7 +140,7 @@ func _draw():
 			y = h
 			
 		rect = Rect2(x - 2, y - 2, 5, 5)
-		draw_rect(rect, Color.yellow)
+		draw_rect(rect, SYMBOL_COLOUR)
 
 func set_range(radar_range):
 	match radar_range:
