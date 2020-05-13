@@ -22,11 +22,20 @@ var symbols = []
 var collected_symbols = [ false, false, false, false ]
 var current_symbol = 0
 
+var music_gain = 0.7
+var sound_gain = 0.7
+
 func _ready():
 	symbol_scenes.append(symbol1)
 	symbol_scenes.append(symbol2)
 	symbol_scenes.append(symbol3)
 	symbol_scenes.append(symbol4)
+	
+func convert_gain_to_db(gain):
+	if gain < 0.0:
+		return -90.0
+	else:
+		return 20.0 * log(gain) / log(10)
 
 func create_symbol(symbol_index, pos):
 	# the symbols are referred to by 1, 2, 3, 4. 
