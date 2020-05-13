@@ -21,7 +21,7 @@ func _draw():
 	var py = player.global_position.y
 	
 	var w = rect_size.x
-	var h = rect_size.y - 20
+	var h = rect_size.y - RADAR_VERT_OFFSET
 	
 	var w2 = w / 2 
 	var h2 = h / 2
@@ -35,7 +35,7 @@ func _draw():
 	draw_rect(rect, Color.white)
 	
 	# current symbol
-	var current_symbol_item = Global.symbols[Global.current_symbol]
+	var current_symbol_item = Global.symbols[Global.current_symbol - 1]
 	
 	var draw_anyway = false
 	var colour = Color(1, 0, 0)

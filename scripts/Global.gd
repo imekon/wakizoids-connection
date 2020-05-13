@@ -15,6 +15,7 @@ var main
 
 var engine_playing = false
 var sounds_enabled = true
+var music_enabled = true
 
 var symbol_scenes = []
 var symbols = []

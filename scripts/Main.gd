@@ -16,6 +16,8 @@ onready var explosion_sound = $SoundEffects/Explosion
 onready var fire_sound = $SoundEffects/Fire
 onready var pickup_sound = $SoundEffects/Pickup
 
+onready var music = $Music/Music
+
 onready var player = $PlayerShip
 
 onready var rock1 = preload("res://scenes/Rock1.tscn")
@@ -59,6 +61,9 @@ func _ready():
 			items[index].symbol = i + 1
 			Global.symbols.append(items[index])
 			flag = false
+	
+	if Global.music_enabled:
+		music.play()
 			
 func _physics_process(delta):
 	var rock_count = get_tree().get_nodes_in_group("rocks").size()
