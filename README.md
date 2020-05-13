@@ -5,6 +5,11 @@
 
 ModeSeven font by acb@dev.null.org
 
+Music by PetterTheSturgeon
+
+Explosion sound by tommccann
+Warp sound by Taira Komori
+
 Ships by By MillionthVector (http://millionthvector.blogspot.de)
 
-<a href="https://www.vecteezy.com/free-vector/alien">Alien Vectors by Vecteezy</a>
+Alien Vectors by Vecteezy ("https://www.vecteezy.com/free-vector/alien")

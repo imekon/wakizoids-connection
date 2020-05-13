@@ -3,20 +3,20 @@
 [ext_resource path="res://fonts/MODES___.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Readme.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 outline_size = 1
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -41,7 +41,7 @@ margin_left = 1.0
 margin_top = 33.0
 margin_right = 1265.0
 margin_bottom = 73.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 text = "README"
 align = 1
 __meta__ = {
@@ -53,8 +53,8 @@ margin_left = 57.0
 margin_top = 97.0
 margin_right = 1209.0
 margin_bottom = 657.0
-custom_fonts/bold_font = SubResource( 1 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center][b]COLLECT ALL FOUR SYMBOLS TO WIN THE GAME.[/b][/center]
 
@@ -85,6 +85,11 @@ ModeSeven font by [url=mailto://acb@dev.null.org]acb@dev.null.org[/url]
 Ships by [url=http://millionthvector.blogspot.de]MillionthVector[/url]
 
 Alien Vectors by [url=https://www.vecteezy.com/free-vector/alien]Vecteezy[/url]
+
+Music by [url=https://opengameart.org/content/space-music-blind-shift]PetterTheSturgeon[/url]
+
+Explosion sound by [url=https://freesound.org/people/tommccann/]tommccann[/url]
+Warp sound by [url=http://taira-komori.jpn.org/freesounden.html]Taira Komori[/url] 
 
 [center]Copyright (c) 2020 Pete Goodwin[/center]"
 text = "COLLECT ALL FOUR SYMBOLS TO WIN THE GAME.
@@ -117,6 +122,11 @@ Ships by MillionthVector
 
 Alien Vectors by Vecteezy
 
+Music by PetterTheSturgeon
+
+Explosion sound by tommccann
+Warp sound by Taira Komori 
+
 Copyright (c) 2020 Pete Goodwin"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,7 +137,7 @@ margin_left = 553.0
 margin_top = 673.0
 margin_right = 709.0
 margin_bottom = 719.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Return"
 __meta__ = {
 "_edit_use_anchors_": false
