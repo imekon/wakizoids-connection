@@ -42,7 +42,6 @@ var bullet_time = 0
 var tween_stop
 
 func _ready():
-	randomize()
 	
 	Global.player = player
 	Global.main = self
