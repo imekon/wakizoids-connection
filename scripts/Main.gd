@@ -139,7 +139,9 @@ func fire_bullet(pos, angle):
 	if bullet_time < BULLET_REPEAT_TIME:
 		return
 		
-	fire_sound.play()
+	if Global.sounds_enabled:
+		fire_sound.play()
+		
 	var bullet = bullet_scene.instance()
 	bullet.global_position = pos
 	bullet.angle = angle

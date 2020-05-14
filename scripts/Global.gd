@@ -51,7 +51,7 @@ func collect_symbol(index):
 	player.symbols_found += 1
 	current_symbol += 1
 	main.play_pickup_sound()
-	if current_symbol > 4:
+	if current_symbol >= 4:
 		game_won()
 		
 func create_explosion(pos):
@@ -59,9 +59,14 @@ func create_explosion(pos):
 	explode.position = pos
 	explode.emitting = true
 	main.add_child(explode)
-	main.play_explosion_sound()
+	
+	if (sounds_enabled):
+		main.play_explosion_sound()
 	
 func play_engine_sound():
+	if !sounds_enabled:
+		return
+		
 	if engine_playing:
 		return
 		
@@ -69,6 +74,9 @@ func play_engine_sound():
 	engine_playing = true
 	
 func stop_engine_sound():
+	if !sounds_enabled:
+		return
+
 	if !engine_playing:
 		return
 		
