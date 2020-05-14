@@ -22,5 +22,8 @@ __meta__ = {
 margin_right = 256.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 1 )
-text = "A C M E Radar"
+text = "GODOT Radar"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

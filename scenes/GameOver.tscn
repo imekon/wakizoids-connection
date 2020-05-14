@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/MODES___.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://images/alien_015.jpg" type="Texture" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -31,7 +32,7 @@ margin_bottom = 743.0
 margin_left = 57.0
 margin_top = 57.0
 margin_right = 1209.0
-margin_bottom = 561.0
+margin_bottom = 297.0
 custom_fonts/bold_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
@@ -60,12 +61,17 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="Panel"]
-margin_left = 545.0
+margin_left = 508.0
 margin_top = 649.0
-margin_right = 725.0
+margin_right = 758.0
 margin_bottom = 695.0
 custom_fonts/font = SubResource( 3 )
 text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="alien_015" type="Sprite" parent="Panel"]
+position = Vector2( 633, 473 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 2 )

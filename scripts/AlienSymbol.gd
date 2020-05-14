@@ -8,6 +8,7 @@ func _ready():
 func on_body_entered(body):
 	if body.is_in_group("player"):
 		Global.collect_symbol(symbol_tag)
+		# add polish here, make it glow before freeing?
 		queue_free()
 		
 	if body.is_in_group("bullets"):
