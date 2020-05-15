@@ -23,3 +23,7 @@ func _physics_process(delta):
 		if collision.collider.is_in_group("aliens"):
 			collision.collider.hit()
 			queue_free()
+			
+		if collision.collider.is_in_group("player"):
+			collision.collider.hit()
+			queue_free()

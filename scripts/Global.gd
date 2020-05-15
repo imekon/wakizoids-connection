@@ -85,3 +85,6 @@ func stop_engine_sound():
 		
 func game_won():
 	get_tree().change_scene("res://scenes/GameOver.tscn")
+
+func game_lost():
+	get_tree().change_scene("res://scenes/GameLost.tscn")

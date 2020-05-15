@@ -20,7 +20,7 @@ var state = STATE.Drifting
 var stop_time
 var stop_timeout
 var targeting
-var last_fired = 0
+var last_fired = 1
 var firing_count = 0
 
 func _ready():
@@ -56,8 +56,10 @@ func process_moving(delta):
 	velocity = Vector2(0, -thrust).rotated(rotation)
 	move_and_collide(velocity * delta)
 	
-	# Are we targeting the player, are we in range, if so FIRE!!!
-	
+	var distance = targeting.distance_to_target(global_position)
+	if distance < 5000:
+		state = STATE.Firing
+		
 func process_drifting(delta):
 	if check_proximity():
 		state = STATE.Stopped
@@ -89,7 +91,7 @@ func process_targeting(delta):
 		
 	targeting.set_target(delta, Global.player)
 	targeting.plot_course_to_target(delta, global_position)
-	state = STATE.Turning
+	state = STATE.TurningToShoot
 	
 func process_turning(delta):
 	if !targeting.plot_course_to_target(delta, global_position):
@@ -107,7 +109,7 @@ func process_turning(delta):
 		state = STATE.Moving
 	
 func process_turning_to_shoot(delta):
-	if !targeting.plot_course_to_target(global_position):
+	if !targeting.plot_course_to_target(delta, global_position):
 		return
 		
 	var angle_delta
@@ -120,21 +122,22 @@ func process_turning_to_shoot(delta):
 	if abs(rotation_degrees - targeting.target_angle) > 1:
 		rotate(deg2rad(angle_delta))
 	else:
-		last_fired = delta
+		last_fired = 1
 		state = STATE.Firing
 	
 func process_firing(delta):
-	var now = last_fired + delta
-	if now > 0.1:
+	last_fired += delta
+	if last_fired > 0.3:
 		var bullet = bullet_scene.instance()
 		bullet.position = firing_position.global_position
-		bullet.rotate(rotation)
+		bullet.angle = rotation_degrees
 		get_parent().add_child(bullet)
-		last_fired = now
+		last_fired = 0
 		firing_count += 1
 
 	if firing_count > 5:
 		state = STATE.Target
+		firing_count = 0
 		targeting.clear()
 	
 func process_stopped(delta):
@@ -165,7 +168,7 @@ func hit():
 		destroyed()
 		
 	state = STATE.Target
-
+	
 func destroyed():
 	Global.player.score += 20
 	if symbol != 0:

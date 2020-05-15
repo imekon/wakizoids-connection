@@ -57,6 +57,15 @@ func _physics_process(delta):
 			
 	health = clamp(health, 0, 100)
 	shields = clamp(shields, 0, 100)
+	
+func hit():
+	if shields > 30:
+		shields -= 30
+	else:
+		health -= 30
+		
+	if health <= 0:
+		Global.game_lost()
 
 func scrape(amount):
 	if shields > 1:

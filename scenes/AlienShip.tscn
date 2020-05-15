@@ -15,4 +15,4 @@ script = ExtResource( 1 )
 position = Vector2( 0, -500 )
 
 [node name="FiringPosition" type="Position2D" parent="."]
-position = Vector2( 0, -100 )
+position = Vector2( 0, -300 )

@@ -35,6 +35,16 @@ func plot_course_to_target(delta, ship_position):
 	target_position = target.get_ref().global_position
 	target_angle = rad2deg(target_position.angle_to_point(ship_position)) + 90
 	return true
+	
+func distance_to_target(position) -> float:
+	if target == null:
+		return 0.0
+		
+	if !target.get_ref():
+		return 0.0
+		
+	target_position = target.get_ref().global_position
+	return abs(position.distance_to(target_position))
 
 func is_target(what):
 	if target != null:
