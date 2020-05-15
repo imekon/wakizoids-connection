@@ -87,4 +87,5 @@ func game_won():
 	get_tree().change_scene("res://scenes/GameOver.tscn")
 
 func game_lost():
+	main.play_explosion_sound()
 	get_tree().change_scene("res://scenes/GameLost.tscn")

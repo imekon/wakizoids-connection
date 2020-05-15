@@ -15,7 +15,7 @@ texture = ExtResource( 1 )
 polygon = PoolVector2Array( 24, -64, 48, 0, 24, 64, 0, 56, -24, 64, -48, 0, -24, -64, -16, -40, 0, -56, 16, -40 )
 
 [node name="FiringPosition" type="Position2D" parent="."]
-position = Vector2( 0, -70 )
+position = Vector2( 0, -96 )
 
 [node name="ExhaustPosition" type="Position2D" parent="."]
 position = Vector2( 0, 70 )

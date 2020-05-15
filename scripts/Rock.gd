@@ -26,6 +26,12 @@ func on_body_entered(body):
 			
 	if body.is_in_group("player"):
 		body.scrape(20)
+		
+	if body.is_in_group("aliens"):
+		body.queue_free()
+		health -= HEALTH_HIT
+		if health < 0:
+			destroyed()
 
 func destroyed():
 	Global.player.score += score

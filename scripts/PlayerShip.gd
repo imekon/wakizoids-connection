@@ -75,3 +75,5 @@ func scrape(amount):
 	if health > 0:
 		health -= amount
 		
+	if health <= 0:
+		Global.game_lost()

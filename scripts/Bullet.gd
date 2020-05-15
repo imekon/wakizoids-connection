@@ -19,11 +19,21 @@ func _physics_process(delta):
 		return
 	
 	var collision = move_and_collide(velocity * delta)
+	
+	# did we hit anything? note we don't hit rocks here as they are rigid bodies;
+	# they work by emitting a signal so they have to handle being hit by a bullet
 	if collision != null:
+		# deal with aliens
 		if collision.collider.is_in_group("aliens"):
 			collision.collider.hit()
 			queue_free()
-			
+		
+		# deal with the player
 		if collision.collider.is_in_group("player"):
 			collision.collider.hit()
+			queue_free()
+			
+		# deal with other bullets
+		if collision.collider.is_in_group("bullets"):
+			collision.collider.queue_free()
 			queue_free()

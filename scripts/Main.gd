@@ -60,7 +60,11 @@ func _ready():
 				
 			items[index].symbol = i + 1
 			Global.symbols.append(items[index])
+			print("symbol in %d" % index)
 			flag = false
+			
+	if Global.symbols.size() != 4:
+		print("not enough symbols!")
 	
 	if Global.music_enabled:
 		if randi() % 100 > 50:
@@ -151,19 +155,6 @@ func fire_bullet(pos, angle):
 	bullet.angle = angle
 	add_child(bullet)
 	bullet_time = 0
-
-#func play_sound(sound):
-#	match sound:
-#		SOUNDS.Alarm:
-#			alarm_sound.play()
-#		SOUNDS.EngineSound:
-#			engine_sound.play()
-#		SOUNDS.Explosion:
-#			explosion_sound.play()
-#		SOUNDS.Fire:
-#			fire_sound.play()
-#		SOUNDS.Pickup:
-#			pickup_sound.play();
 
 func play_engine_sound():
 	tween_stop = false

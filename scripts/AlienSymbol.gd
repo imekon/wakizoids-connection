@@ -14,6 +14,10 @@ func on_body_entered(body):
 	if dead:
 		return
 		
+	if body.is_in_group("aliens"):
+		print("alien destroyed symbol, chance of peace non-existant")
+		glow_symbol()
+		
 	if body.is_in_group("player"):
 		Global.collect_symbol(symbol_tag)
 		glow_symbol()
