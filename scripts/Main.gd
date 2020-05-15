@@ -16,7 +16,8 @@ onready var explosion_sound = $SoundEffects/Explosion
 onready var fire_sound = $SoundEffects/Fire
 onready var pickup_sound = $SoundEffects/Pickup
 
-onready var music = $Music/Music
+onready var music1 = $Music/Music1
+onready var music2 = $Music/Music2
 
 onready var player = $PlayerShip
 
@@ -62,7 +63,10 @@ func _ready():
 			flag = false
 	
 	if Global.music_enabled:
-		music.play()
+		if randi() % 100 > 50:
+			music2.play()
+		else:
+			music1.play()
 			
 func _physics_process(delta):
 	var rock_count = get_tree().get_nodes_in_group("rocks").size()

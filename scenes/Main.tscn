@@ -179,7 +179,11 @@ bus = "SFX"
 
 [node name="Music" type="Node2D" parent="."]
 
-[node name="Music" type="AudioStreamPlayer" parent="Music"]
+[node name="Music1" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 11 )
+bus = "Music"
+
+[node name="Music2" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 11 )
 bus = "Music"
 [connection signal="tween_completed" from="SoundEffects/Tween" to="." method="on_tween_completed"]
