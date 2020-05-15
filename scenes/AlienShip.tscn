@@ -11,8 +11,8 @@ script = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-[node name="FiringPosition" type="Position2D" parent="."]
+[node name="ProximityPosition" type="Position2D" parent="."]
 position = Vector2( 0, -500 )
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="FiringPosition" type="Position2D" parent="."]
 position = Vector2( 0, -100 )

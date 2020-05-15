@@ -79,12 +79,12 @@ func process_targeting(delta):
 		state = STATE.Drifting
 		return
 		
-	targeting.set_target(Global.player)
-	targeting.plot_course_to_target(global_position)
+	targeting.set_target(delta, Global.player)
+	targeting.plot_course_to_target(delta, global_position)
 	state = STATE.Turning
 	
 func process_turning(delta):
-	if !targeting.plot_course_to_target(global_position):
+	if !targeting.plot_course_to_target(delta, global_position):
 		return
 		
 	var angle_delta
@@ -155,6 +155,8 @@ func hit():
 	health -= 30
 	if health < 0:
 		destroyed()
+		
+	state = STATE.Target
 
 func destroyed():
 	Global.player.score += 20

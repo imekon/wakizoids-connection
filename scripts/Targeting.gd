@@ -19,16 +19,16 @@ func clear():
 	target = null
 
 func set_target(delta, what):
-	last_fired = delta
+	last_fired += delta
 	target = weakref(what)
 
 func plot_course_to_target(delta, ship_position):
 	if target == null:
-		last_fired = delta
+		last_fired += delta
 		return false
 	
 	if !target.get_ref():
-		last_fired = delta
+		last_fired += delta
 		target = null
 		return false
 		
