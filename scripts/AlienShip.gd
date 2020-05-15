@@ -16,7 +16,7 @@ const MOVEMENT = 200
 var symbol = 0
 var velocity = Vector2()
 var thrust
-var state = STATE.Moving
+var state = STATE.Drifting
 var stop_time
 var stop_timeout
 var targeting
@@ -53,14 +53,22 @@ func process_moving(delta):
 		
 	check_edge_universe()
 	
-	velocity = Vector2(thrust, 0).rotated(deg2rad(rotation_degrees - 90))
+	velocity = Vector2(0, -thrust).rotated(rotation)
 	move_and_collide(velocity * delta)
 	
+	# Are we targeting the player, are we in range, if so FIRE!!!
+	
 func process_drifting(delta):
+	if check_proximity():
+		state = STATE.Stopped
+		stop_time = 0
+		stop_timeout = 5 + randi() % 4
+		return
+		
 	check_edge_universe()
 	
 	thrust = MOVEMENT * delta
-	var direction = Vector2(thrust, 0).rotated(deg2rad(rotation_degrees - 90))
+	var direction = Vector2(0, -thrust).rotated(rotation)
 	move_and_collide(direction)
 	
 func process_targeting(delta):
