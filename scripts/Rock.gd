@@ -10,12 +10,16 @@ const THRUST_RANGE = 200
 
 var health = HEALTH_MAX
 var symbol = 0
+var scrape_time = 0
 
 func _ready():
 	var angle = randi() % 360
 	var thrust = THRUST_MIN + randi() % THRUST_RANGE
 	var impulse = Vector2(thrust, 0).rotated(deg2rad(angle))
 	apply_impulse(Vector2(), impulse)
+	
+func _physics_process(delta):
+	scrape_time += delta
 
 func on_body_entered(body):
 	if body.is_in_group("bullets"):
@@ -25,7 +29,9 @@ func on_body_entered(body):
 			destroyed()
 			
 	if body.is_in_group("player"):
-		body.scrape(20)
+		if scrape_time > 0.3:
+			body.scrape(5)
+			scrape_time = 0
 		
 	if body.is_in_group("aliens"):
 		body.queue_free()

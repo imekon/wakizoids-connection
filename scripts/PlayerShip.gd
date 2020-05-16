@@ -16,8 +16,10 @@ var score = 0
 var shields = 100
 var health = 100
 var symbols_found = 0
+var collision_time = 0
 
 func _physics_process(delta):
+	collision_time += delta
 	thrust -= THRUST_DECAY
 	
 	if Input.is_action_pressed("left"):
@@ -47,7 +49,9 @@ func _physics_process(delta):
 	rotation_degrees = angle
 	var collision = move_and_collide(velocity * delta)
 	if collision != null:
-		scrape(15)
+		if collision_time > 0.3:
+			scrape(5)
+			collision_time = 0
 	
 	if health < 100:
 		health += 0.1

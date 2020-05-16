@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://images/starfield.png" type="Texture" id=1]
 [ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=2]
@@ -44,6 +44,10 @@ size = 20
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
 size = 20
 font_data = ExtResource( 3 )
 
@@ -153,6 +157,19 @@ margin_left = 512.0
 margin_top = 560.0
 margin_right = 768.0
 margin_bottom = 752.0
+
+[node name="ReminderLabel" type="Label" parent="PlayerShip/HUD"]
+margin_top = 24.0
+margin_right = 1280.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 9 )
+text = "Look for the blue dot on the radar!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="PlayerShip/HUD/ReminderLabel"]
 
 [node name="SoundEffects" type="Node2D" parent="."]
 

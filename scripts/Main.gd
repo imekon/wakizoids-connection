@@ -7,6 +7,9 @@ onready var thrust_label = $PlayerShip/HUD/ThrustLabel
 onready var rock_label = $PlayerShip/HUD/RockLabel
 onready var alien_label = $PlayerShip/HUD/AlienLabel
 onready var symbols_label = $PlayerShip/HUD/SymbolLabel
+onready var reminder_label = $PlayerShip/HUD/ReminderLabel
+onready var reminder_tween = $PlayerShip/HUD/ReminderLabel/Tween
+
 onready var radar = $PlayerShip/HUD/Radar
 
 onready var tween = $SoundEffects/Tween
@@ -37,13 +40,12 @@ onready var bullet_scene = preload("res://scenes/Bullet.tscn")
 
 const BULLET_REPEAT_TIME = 0.2
 
-enum SOUNDS { Alarm, EngineSound, Explosion, Fire, Pickup }
+# enum SOUNDS { Alarm, EngineSound, Explosion, Fire, Pickup }
 
 var bullet_time = 0
 var tween_stop
 
 func _ready():
-	
 	Global.player = player
 	Global.main = self
 	
@@ -51,16 +53,18 @@ func _ready():
 	build_rocks(items)
 	build_aliens(items)
 	
+	print("symbols are...")
+	
 	for i in range(0, 4):
 		var flag = true
 		while flag:
 			var index = randi() % items.size()
 			if items[index].symbol != 0:
 				continue
-				
+			
+			print("symbol at %d" % index)
 			items[index].symbol = i + 1
 			Global.symbols.append(items[index])
-			print("symbol in %d" % index)
 			flag = false
 			
 	if Global.symbols.size() != 4:
@@ -71,6 +75,9 @@ func _ready():
 			music2.play()
 		else:
 			music1.play()
+			
+	reminder_tween.interpolate_property(reminder_label, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 5, Tween.TRANS_QUAD, Tween.EASE_IN)
+	reminder_tween.start()
 			
 func _physics_process(delta):
 	var rock_count = get_tree().get_nodes_in_group("rocks").size()

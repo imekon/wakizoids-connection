@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/MODES___.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/GameLost.gd" type="Script" id=2]
+[ext_resource path="res://images/ships/brokenship1.png" type="Texture" id=3]
+[ext_resource path="res://images/ships/brokenship3.png" type="Texture" id=4]
+[ext_resource path="res://images/ships/brokenship2.png" type="Texture" id=5]
+[ext_resource path="res://images/ships/brokenship4.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -51,13 +55,13 @@ __meta__ = {
 margin_left = 57.0
 margin_top = 81.0
 margin_right = 1209.0
-margin_bottom = 601.0
+margin_bottom = 169.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]The aliens never received your message of peace.[/center]
 
-Try again, you might find all four symbols and send the message next time!"
+[center]Try again, you might find all four symbols and send the message next time![/center]"
 text = "The aliens never received your message of peace.
 
 Try again, you might find all four symbols and send the message next time!"
@@ -75,4 +79,22 @@ text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="brokenship1" type="Sprite" parent="PanelContainer/Panel"]
+position = Vector2( 633, 313 )
+rotation = 0.20944
+texture = ExtResource( 3 )
+
+[node name="brokenship2" type="Sprite" parent="PanelContainer/Panel"]
+position = Vector2( 689, 377 )
+texture = ExtResource( 5 )
+
+[node name="brokenship4" type="Sprite" parent="PanelContainer/Panel"]
+position = Vector2( 633, 441 )
+rotation = 0.523599
+texture = ExtResource( 6 )
+
+[node name="brokenship3" type="Sprite" parent="PanelContainer/Panel"]
+position = Vector2( 593, 361 )
+texture = ExtResource( 4 )
 [connection signal="pressed" from="PanelContainer/Panel/RestartButton" to="." method="on_restart_pressed"]

@@ -64,7 +64,9 @@ Left rotates left, right rotates right. Forward fires thrusters, back slows down
 
 1, 2 and 3 set the range of the radar: short (C), medium (M) and long (L)
 
-Look for the blue dot. It's where the next symbol is, or its direction. It is possible for there to be more than one blue dot, but rarely occurs.
+The radar will show the next symbol to find as a blue dot - it's hiding as a rock or an alien ship. You need to destroy it to release the symbol. Once released the radar shows it as a larger blue dot.
+
+If you see \"Symbol Lost\" on the radar, then all hope is lost. The next symbol is missing or destroyed. You can't win.
 
 Once you destroy the rock or alien ship that holds the symbol, it should appear. You can then fly into it to collect it.
 
@@ -102,7 +104,9 @@ Left rotates left, right rotates right. Forward fires thrusters, back slows down
 
 1, 2 and 3 set the range of the radar: short (C), medium (M) and long (L)
 
-Look for the blue dot. It's where the next symbol is, or its direction. It is possible for there to be more than one blue dot, but rarely occurs.
+The radar will show the next symbol to find as a blue dot - it's hiding as a rock or an alien ship. You need to destroy it to release the symbol. Once released the radar shows it as a larger blue dot.
+
+If you see \"Symbol Lost\" on the radar, then all hope is lost. The next symbol is missing or destroyed. You can't win.
 
 Once you destroy the rock or alien ship that holds the symbol, it should appear. You can then fly into it to collect it.
 

@@ -4,6 +4,8 @@ const RADAR_TIME = 0.1
 const RADAR_VERT_OFFSET = 20
 const SYMBOL_COLOUR = Color(0, 0, 1)
 
+onready var broken_label = $BrokenLabel
+
 var time = 0
 var scaling = 100
 
@@ -36,9 +38,10 @@ func _draw():
 	
 	# current symbol
 	var current_symbol_item = Global.symbols[Global.current_symbol - 1]
+	var current_symbol_detected = false
 	
-	var draw_anyway = false
-	var colour = Color(1, 0, 0)
+	var draw_anyway
+	var colour
 
 	# rock positions
 	var rocks = get_tree().get_nodes_in_group("rocks")
@@ -49,9 +52,9 @@ func _draw():
 		x = (rock.global_position.x - px) / scaling + w2
 		y = (rock.global_position.y - py) / scaling + h2 + RADAR_VERT_OFFSET
 
-#		var colour = Color(0, 0.7, 0)
 		if rock == current_symbol_item:
 			colour = SYMBOL_COLOUR
+			current_symbol_detected = true
 			draw_anyway = true
 			
 		if x < 0:
@@ -90,9 +93,9 @@ func _draw():
 		x = (alien.global_position.x - px) / scaling + w2
 		y = (alien.global_position.y - py) / scaling + h2 + RADAR_VERT_OFFSET
 
-		colour = Color(0.7, 0, 0)
 		if alien == current_symbol_item:
 			colour = SYMBOL_COLOUR
+			current_symbol_detected = true
 			draw_anyway = true
 
 		if x < 0:
@@ -141,6 +144,13 @@ func _draw():
 			
 		rect = Rect2(x - 2, y - 2, 5, 5)
 		draw_rect(rect, SYMBOL_COLOUR)
+		
+	var broken = false
+	if current_symbol_detected == false && symbols.size() == 0:
+		broken = true
+		
+	broken_label.visible = broken
+		
 
 func set_range(radar_range):
 	match radar_range:

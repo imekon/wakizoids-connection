@@ -50,6 +50,10 @@ func collect_symbol(index):
 	collected_symbols[index - 1] = true
 	player.symbols_found += 1
 	current_symbol += 1
+	
+	while current_symbol < 4 && collected_symbols[current_symbol]:
+		current_symbol += 1
+		
 	main.play_pickup_sound()
 	if current_symbol >= 4:
 		game_won()
