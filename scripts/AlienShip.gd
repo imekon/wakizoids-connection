@@ -143,7 +143,7 @@ func process_firing(delta):
 func process_stopped(delta):
 	stop_time += delta
 	if stop_time > stop_timeout:
-		state = STATE.Moving
+		state = STATE.Drifting
 
 func check_edge_universe():
 	var x = global_position.x

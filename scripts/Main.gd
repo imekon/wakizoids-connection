@@ -43,6 +43,7 @@ const BULLET_REPEAT_TIME = 0.2
 # enum SOUNDS { Alarm, EngineSound, Explosion, Fire, Pickup }
 
 var bullet_time = 0
+var escape_time = 0
 var tween_stop
 
 func _ready():
@@ -62,7 +63,7 @@ func _ready():
 			if items[index].symbol != 0:
 				continue
 			
-			print("symbol at %d" % index)
+			print("symbol %d at %d" % [i, index])
 			items[index].symbol = i + 1
 			Global.symbols.append(items[index])
 			flag = false
@@ -92,9 +93,13 @@ func _physics_process(delta):
 	symbols_label.text = "Symbols: %d/4" % player.symbols_found
 	
 	bullet_time += delta
+	escape_time += delta
 	
 	if Input.is_action_pressed("fire"):
 		fire_bullet(player.firing_position.global_position, player.angle)
+		
+	if Input.is_action_just_pressed("escape"):
+		process_escape(delta)
 		
 	if Input.is_action_just_pressed("short_range"):
 		radar.set_range(0)
@@ -104,6 +109,10 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("long_range"):
 		radar.set_range(2)
+		
+func process_escape(delta):
+	if escape_time > 10:
+		get_tree().change_scene("res://scenes/Welcome.tscn")
 
 func build_rocks(items):
 	var rock

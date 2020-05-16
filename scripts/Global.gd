@@ -57,8 +57,10 @@ func collect_symbol(index):
 	
 	while current_symbol < 4 && collected_symbols[current_symbol]:
 		current_symbol += 1
+
+	if sounds_enabled:
+		main.play_pickup_sound()
 		
-	main.play_pickup_sound()
 	if current_symbol >= 4:
 		game_won()
 		
@@ -68,7 +70,7 @@ func create_explosion(pos):
 	explode.emitting = true
 	main.add_child(explode)
 	
-	if (sounds_enabled):
+	if sounds_enabled:
 		main.play_explosion_sound()
 	
 func play_engine_sound():
@@ -101,5 +103,6 @@ func game_lost():
 	player_score = player.score
 	if player.score > high_score:
 		high_score = player.score
-	main.play_explosion_sound()
+#	if sounds_enabled:
+#		main.play_explosion_sound()
 	get_tree().change_scene("res://scenes/GameLost.tscn")
