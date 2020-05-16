@@ -50,6 +50,8 @@ func _ready():
 	Global.player = player
 	Global.main = self
 	
+	Global.reset_symbols()
+	
 	var items = []
 	build_rocks(items)
 	build_aliens(items)

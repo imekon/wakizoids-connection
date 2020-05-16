@@ -38,6 +38,13 @@ func convert_gain_to_db(gain):
 		return -90.0
 	else:
 		return 20.0 * log(gain) / log(10)
+		
+func reset_symbols():
+	symbols.clear()
+	current_symbol = 0
+	
+	for i in range(0, 4):
+		collected_symbols[i] = false
 
 func create_symbol(symbol_index, pos):
 	# the symbols are referred to by 1, 2, 3, 4. 
@@ -60,7 +67,8 @@ func collect_symbol(index):
 
 	if sounds_enabled:
 		main.play_pickup_sound()
-		
+	
+	# this looks wrong but without it you can't win the game
 	if current_symbol >= 4:
 		game_won()
 		
