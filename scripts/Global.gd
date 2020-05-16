@@ -24,6 +24,8 @@ var current_symbol = 0
 
 var music_gain = 0.7
 var sound_gain = 0.7
+var player_score = 0
+var high_score = 0
 
 func _ready():
 	symbol_scenes.append(symbol1)
@@ -47,6 +49,8 @@ func create_symbol(symbol_index, pos):
 func collect_symbol(index):
 	# the symbols are referred to by 1, 2, 3, 4. 
 	# 0 means no symbol on the alien or rock
+	player.score += 1000
+
 	collected_symbols[index - 1] = true
 	player.symbols_found += 1
 	current_symbol += 1
@@ -88,8 +92,14 @@ func stop_engine_sound():
 	engine_playing = false
 		
 func game_won():
+	player_score = player.score
+	if player.score > high_score:
+		high_score = player.score
 	get_tree().change_scene("res://scenes/GameOver.tscn")
 
 func game_lost():
+	player_score = player.score
+	if player.score > high_score:
+		high_score = player.score
 	main.play_explosion_sound()
 	get_tree().change_scene("res://scenes/GameLost.tscn")

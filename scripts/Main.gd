@@ -85,7 +85,7 @@ func _physics_process(delta):
 	
 	shields_label.text = "Shields: %d" % player.shields
 	health_label.text = "Health: %d" % player.health
-	score_label.text = "Score: %d" % player.score
+	score_label.text = "Score: %d High score: %d" % [ player.score, Global.high_score ]
 	thrust_label.text = "Thrust: %d" % player.thrust
 	rock_label.text = "Rocks: %d" % rock_count
 	alien_label.text = "Aliens: %d" % alien_count

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-const BULLET_THRUST = 1000
-const BULLET_TIME_LIMIT = 4
+const BULLET_THRUST = 1500
+const BULLET_TIME_LIMIT = 6
 
 var angle = 0
 var velocity = Vector2(0, 0)
