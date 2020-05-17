@@ -56,8 +56,6 @@ func _ready():
 	build_rocks(items)
 	build_aliens(items)
 	
-	print("symbols are...")
-	
 	for i in range(0, 4):
 		var flag = true
 		while flag:

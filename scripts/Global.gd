@@ -20,7 +20,7 @@ var music_enabled = true
 var symbol_scenes = []
 var symbols = []
 var collected_symbols = [ false, false, false, false ]
-var current_symbol = 0
+var current_symbol = 1
 
 var music_gain = 0.7
 var sound_gain = 0.7
@@ -41,7 +41,7 @@ func convert_gain_to_db(gain):
 		
 func reset_symbols():
 	symbols.clear()
-	current_symbol = 0
+	current_symbol = 1
 	
 	for i in range(0, 4):
 		collected_symbols[i] = false
@@ -62,14 +62,16 @@ func collect_symbol(index):
 	player.symbols_found += 1
 	current_symbol += 1
 	
-	while current_symbol < 4 && collected_symbols[current_symbol]:
+	while current_symbol <= 4 && collected_symbols[current_symbol - 1]:
 		current_symbol += 1
 
 	if sounds_enabled:
 		main.play_pickup_sound()
+
+	print("current symbol %d" % current_symbol)
 	
 	# this looks wrong but without it you can't win the game
-	if current_symbol >= 4:
+	if current_symbol > 4:
 		game_won()
 		
 func create_explosion(pos):
