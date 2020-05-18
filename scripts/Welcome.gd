@@ -18,6 +18,8 @@ var last_symbol = null
 func _ready():
 	randomize()
 	process_glow_loop()
+	
+	Global.load_high_score()
 
 func process_glow_loop():
 	while true:

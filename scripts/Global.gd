@@ -2,6 +2,7 @@ extends Node
 
 const EDGE_UNIVERSE = 20000
 const EDGE_UNIVERSE2 = 40000
+const SCORING_FILENAME = "scoring.data"
 
 onready var symbol1 = preload("res://scenes/Symbol1.tscn")
 onready var symbol2 = preload("res://scenes/Symbol2.tscn")
@@ -107,6 +108,7 @@ func game_won():
 	player_score = player.score
 	if player.score > high_score:
 		high_score = player.score
+	save_high_score(SCORING_FILENAME)
 	get_tree().change_scene("res://scenes/GameOver.tscn")
 
 func game_lost():
@@ -115,4 +117,27 @@ func game_lost():
 		high_score = player.score
 #	if sounds_enabled:
 #		main.play_explosion_sound()
+	save_high_score(SCORING_FILENAME)
 	get_tree().change_scene("res://scenes/GameLost.tscn")
+
+func save_high_score(filename):
+	var data = {
+		"HighScore": high_score
+	}
+
+	var file = File.new()
+	file.open(filename, File.WRITE)
+	file.store_line(to_json(data))
+	file.close()
+	
+func load_high_score():
+	var file = File.new()
+	if !file.file_exists(SCORING_FILENAME):
+		return false
+		
+	file.open(filename, File.READ)
+	var data = parse_json(file.get_line())
+	if data != null:
+		high_score = data["HighScore"]
+	file.close()
+	return true
